@@ -4,7 +4,9 @@
   <div class="center jumbotron">
     <div class="text-center">
       <h1>Welcome to the Attend</h1>
-      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+      <h6>学生と教授は別れてサインアップしてください</h6>
+      <%= link_to '学生', signup_path, class: 'btn btn-lg btn-dark' %>
+       <%= link_to '教授', new_professor_path, class: 'btn btn-lg btn-light' %>
     </div>
   </div>
 <% end %>
