@@ -6,7 +6,7 @@ class ProfessorsController < ApplicationController
   end
 
   def new
-    @professor=Profssor.new
+    @professor = Professor.new
   end
 
   def create
