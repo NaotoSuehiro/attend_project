@@ -1,8 +1,15 @@
 <h3>MY 講義一覧</h3>
 
-<ul>
+<div><%= link_to '新規作成', new_lecture _path, class: 'btn btn-lg primary' %></div>
+
+<table class="table table-hover" >
+  <tr> <th class="text-center">講義名</th>
+  
+  </tr>
+  
+  <tr>
  <% @lectures.each do |lecture| %>
      <%= <li>lecture.name</li> %>
-<% end %>
-    
-</ul>
+ <% end %>
+  </tr>
+ </table>

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
-    <h3>クラス作成</h3>
+    <h3>クラス編集</h3>
 
     <%= form_with(model: @lecture, local: true) do |f| %>
     
@@ -36,7 +36,7 @@
         <%= f.text_field :comment, class: 'form-control' %>
       </div>
       　
-      <%= f.submit '作成', class: 'btn btn-dark btn-block' %>
+      <%= f.submit '更新する', class: 'btn btn-dark btn-block' %>
        
       <%= form_with(model: @lecture, local: true) do |f| %>
         <%= render 'layouts/error_messages', model: f.object %>
