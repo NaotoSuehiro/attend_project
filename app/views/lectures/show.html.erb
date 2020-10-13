@@ -1,32 +1,31 @@
-<table class="table table-striped">
-    
+<table class="table">
     <tr>
-    <td>講義名</td>
-        <td class="text-center"><%=lecture.name%></td>
+     <th class="text-center">講義概要</th>
     </tr>
     
     <tr>
-    <td>タイトル</td>
-        <td class="text-center"><%=lecture.text%></td>
+     <td>講義名</td>
+     <td class="text-center"> <%= @lecture.name %></td>
     </tr>
     
     <tr>
-    <td>時間割</td>
-        <td class="text-center"><%=lecture.schedule%>限目</td>
+     <td>タイトル</td>
+     <td class="text-center"><%= @lecture.title %></td>
     </tr>
     
     <tr>
-    <td>回数</td>
-        <td class="text-center">第<%=lecture.number%>回</td>
+     <td>時間割</td>
+     <td class="text-center"><%= @lecture.schedule %>限目</td>
     </tr>
     
     <tr>
-    <td>コメント</td>
-        <td class="text-center"><%=lecture.comment%></td>
+     <td>回数</td>
+     <td class="text-center">第<%= @lecture.number %>回</td>
     </tr>
     
     <tr>
-    <td>講義名</td>
-        <td class="text-center"><%=lecture.name%></td>
+     <td>コメント</td>
+     <td class="text-center"><%= @lecture.comment %></td>
     </tr>
     
+</table>

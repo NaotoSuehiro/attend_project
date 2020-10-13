@@ -1,18 +1,18 @@
 class LecturesController < ApplicationController
   def index
-      @lectures=Lecture.all
+      @lectures = Lecture.all
   end
 
   def show
-      @leture=Lecture.find(parmas[:id])
+      @lecture = Lecture.find(params[:id])
   end
 
   def new
-      @lecture=Lecture.new
+      @lecture = Lecture.new
   end
 
   def create
-       @lecture=Lecture.new(lecture_paramas)
+       @lecture = Lecture.new
     if @lecture.save
         flash[:succece]="クラスが作成されました"
         redirect_to @lecture
@@ -23,12 +23,12 @@ class LecturesController < ApplicationController
   end
 
   def edit
-      @lecture=Lecture.find(paramas[:id])
+      @lecture = Lecture.find(params[:id])
       
   end
 
   def update
-      @lecture= Lecture.find(paramas[:id])
+      @lecture = Lecture.find(params[:id])
     if @lecture.save
         flash[:succece]="クラスが更新されました"
         redirect_to @lecture
@@ -46,6 +46,9 @@ class LecturesController < ApplicationController
       flash[:succece]="クラスが削除されました"
       redirect_to lectures_path
   end
+  private
+
+  
   
   
 end

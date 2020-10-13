@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
  
   get 'signup', to: 'users#new'
+  get 'login', to: 'sessions#new'
   resources :users, only: [:index, :show, :new, :create]
   resources :professors,only: [:index, :show, :new, :create]
   resources :lectures
