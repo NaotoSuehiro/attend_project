@@ -1,15 +1,16 @@
-<h3>MY 講義一覧</h3>
+<h3>教授 講義一覧</h3>
 
-<div><%= link_to '新規作成', new_lecture_path, class: 'btn btn-lg primary' %></div>
+<p><%= link_to '新規作成', new_lecture_path, class: 'btn btn-primary' %></p>
 
-<table class="table table-hover" >
-  <tr> <th class="text-center">講義名</th>
+
+<table class="table table-hover" "table-info">
+  <tr> <p><th class="text-center" "table-info">講義名</th></p>
   </tr>
    </table>
   
   <table class="table table-hover" >
  <% @lectures.each do |lecture| %>
-   <tr> <%= lecture.name%> <%=link_to "投稿する","#"%></tr>
+   <p><tr> <%= lecture.name%>#心理学# <%=link_to "投稿する","#"%></tr></p>
  <% end %>
  </table>
  
