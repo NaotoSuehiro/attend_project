@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
-    <h3><strong>クラス作成</strong></h3>
+    <h3><strong>投稿する</strong></h3>
 
     <%= form_with(model: @lecture, local: true) do |f| %>
     
@@ -17,6 +17,17 @@
     　 <div class="form-group">
         <%= f.label :schedule, '時間割' %>
         <%= f.select :schedule, ["1","2","3","4","5","6","7","8","9"], { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+      </div>
+      
+      　 <div class="form-group">
+        <%= f.label :schedule, '回数' %>
+        <%= f.select :schedule, ["1","2","3","4","5","6","7","8","9","10",
+        "11","12","13","14","15","16","17","18","19","20"], { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :password, 'パスワード' %>
+        <%= f.text_field :passward, class: 'form-control' %>
       </div>
       
   　　　<div class="form-group">
