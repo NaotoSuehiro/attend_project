@@ -1,18 +1,45 @@
 <h3>教授 講義一覧</h3>
 
-<p><%= link_to '新規作成', new_lecture_path, class: 'btn btn-primary' %></p>
-    <table class="table table-active">
-    <tr>
-     <td class="text-center">講義</td>
-    </tr>
-    </table>
-    
-    <table class="table table-hover">
-    <tr>
-     <% @lectures.each do |lecture| %>
-        <td><%= lecture.name %>#</td>
-        <td class="text-right"><%=link_to "確認", @lecture %>　　<%=link_to "投稿", new_posting_path %></td>
-     </tr>
-     <% end %>
-  　</table>
+   <div class="container">
+     <div class="row">
+       <div class="col-md-3">
+         <div class="card border-secondary mb-3">
+           <div class="card-header text-center">Profile</div>
+           <div class="card-body"> 名前：<%= current_user.name %></br>#</div>
+         </div>
+        </div>
+        
+          <div class="col-md-6">
+            <div class="card border-secondary mb-3">
+              <div class="card-header text-center">メモ</div>
+              <div class="card-body">#</br>#</div>
+            </div>
+          </div>
+                               
+            <div class="col-md-3">
+              <div class="card border-secondary mb-3">
+                <div class="card-header text-center">新着情報</div>
+                <div class="card-body">#</br>#</div>
+              </div>
+            </div>
+      </div>
+    </div>
 
+ <div><%= link_to '新規作成', new_lecture_path, class: 'btn btn-primary' %></div>
+ 
+ <table class="table-hover">
+  　 <thead>
+  　     <tr>
+  　      <th class="table-primar tex-center">講義</th>
+  　 　  </tr>
+  　 </thead>   
+  　
+     <tbody>
+     <% @lectures.each do |lecture| %>
+         <tr> 
+             <td><%= lecture.name %></td>
+             <td class = "text-right"><%=link_to "確認", @lecture %>　　<%=link_to "投稿", new_posting_path %></td>
+         </tr>
+     <% end %>
+     </tbody>
+　　</table>　　

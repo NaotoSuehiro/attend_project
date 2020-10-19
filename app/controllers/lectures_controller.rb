@@ -12,18 +12,18 @@ class LecturesController < ApplicationController
   end
 
   def create
-       @lecture = Lecture.new
+    @lecture = Lecture.new(lecture_params)
     if @lecture.save
-        flash[:succece]="クラスが作成されました"
-        redirect_to @lecture
+      flash[:succece]="クラスが作成されました"
+      redirect_to @lecture #lecture_url(@lecture)
     else
-     flash.now[:danger]="クラスが作成できませんでした"
-     　render :new
+      flash.now[:danger]="クラスが作成できませんでした"
+      render :new
     end
   end
 
   def edit
-      @lecture = Lecture.find(params[:id])
+    @lecture = Lecture.find(params[:id])
       
   end
 
@@ -46,9 +46,11 @@ class LecturesController < ApplicationController
       flash[:succece]="クラスが削除されました"
       redirect_to lectures_path
   end
+  
   private
+    def lecture_params
+      params.require(:lecture).permit(:name, :title, :schedule, :comment)
+        
+    end
 
-  
-  
-  
 end
