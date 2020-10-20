@@ -1,15 +1,13 @@
 <% if logged_in? %>
   <p> ようこそ<%= current_user.name %>様</p>
-   <h6>学生と教授は別れてサインアップしてください</h6>
+   <h6>あなたは既にログインしてます</h6>
       <%= link_to '学生', signup_path, class: 'btn btn-lg btn-dark' %>
-       <%= link_to '教授', new_professor_path, class: 'btn btn-lg btn-light' %>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
       <h1>Welcome to the Attend</h1>
-      <h6>学生と教授は別れてサインアップしてください</h6>
+      <h6>サインアップしてください</h6>
       <%= link_to '学生', signup_path, class: 'btn btn-lg btn-dark' %>
-       <%= link_to '教授', new_professor_path, class: 'btn btn-lg btn-light' %>
     </div>
    
 <% end %>
