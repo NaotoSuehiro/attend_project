@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :lectures
   resources :sessions, only: [:new, :create, :destroy]
   resources :sessions_professor, only: [:new, :create, :destroy]
-  resources :posting, only: [:show, :new, :cereate, :edit, :destroy]
   get "new_session", to: "professors#new"
   
 end
