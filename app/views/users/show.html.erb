@@ -1,39 +1,28 @@
-<h1>MY 講義</h1>
+<h1>プロフィール</h1>
    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                  <div class="card border-secondary mb-3">
-                      <div class="card-header text-center">Profile</div>
-                      
-                        <div class="card-body">
-                           ID:<%= current_user.id %></br>
-                           学籍番号：<%= current_user.number %></br>
-                           名前：<%= current_user.name %>
-                        </div>
-                  </div>  
-            </div>
-                           <div class="col-md-6">
-                              <div class="card border-secondary mb-3">
-                                <div class="card-header text-center">メモ</div>
-                                <div class="card-body">#</br>#</br>#</div>
-                              </div>
-                            </div>
-                               
-                                <div class="col-md-3">
-                                  <div class="card border-secondary mb-3">
-                                    <div class="card-header text-center">新着情報</div>
-                                    <div class="card-body">#</br>#</br>#</div>
-                                  </div>
-                                </div>
-                        
-                
-                        
-                
-                
-                
-            
+     <div class="row">
+       <div class="col-md-3">
+         <div class="card border-secondary mb-3">
+           <div class="card-header text-center">Profile</div>
+           <div class="card-body"> 名前：<%= current_user.name %></br>#</div>
+         </div>
         </div>
-   </div>
+        
+          <div class="col-md-6">
+            <div class="card border-secondary mb-3">
+              <div class="card-header text-center">メモ</div>
+              <div class="card-body">#</br>#</div>
+            </div>
+          </div>
+                               
+            <div class="col-md-3">
+              <div class="card border-secondary mb-3">
+                <div class="card-header text-center">新着情報</div>
+                <div class="card-body">#</br>#</div>
+              </div>
+            </div>
+      </div>
+    </div>
 
 <table class="table table-hover" "table-info">
   <tr> <p><th class="text-center" "table-info">講義名</th></p>
@@ -43,3 +32,4 @@
   <table class="table table-hover" >
    
  </table>
+ 

@@ -8,5 +8,18 @@ class User < ApplicationRecord
     has_secure_password
     
   has_many :messages
-  has_many :lectures,through: :Message
+  has_many :lectures,through: :messages
+#bookmark_relationship
+  #has_many :favorite,thought: :messages, source: :lecture
+end
+
+#bookmark_function
+def like(lecture)
+  Messages.find_or_create_by(lecture_id:lecture.id)
+end
+
+#bookmark_remove_function
+def unlike(lecture)
+  message = messages.find_by(lecture_id :lecture.id)
+  message.destroy if message
 end

@@ -44,6 +44,7 @@ class LecturesController < ApplicationController
       @lectute=Lecture.find(params[:id])
       @lecture.destroy
       
+      
       flash[:succece]="クラスが削除されました"
       redirect_to lectures_url
   end
