@@ -6,6 +6,7 @@ class LecturesController < ApplicationController
 
   def show
       @lecture = Lecture.find(params[:id])
+      
   end
 
   def new
@@ -42,9 +43,8 @@ class LecturesController < ApplicationController
 
   def destroy
       @lectute=Lecture.find(params[:id])
+       binding.pry
       @lecture.destroy
-      
-      
       flash[:succece]="クラスが削除されました"
       redirect_to lectures_url
   end
