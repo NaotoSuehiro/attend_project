@@ -6,7 +6,9 @@ class LecturesController < ApplicationController
 
   def show
       @lecture = Lecture.find(params[:id])
-      
+      #messageの表記
+      @message = current_user.messages.build
+      @messages = current_user.messages.order(id: :desc).page(params[:page])
   end
 
   def new

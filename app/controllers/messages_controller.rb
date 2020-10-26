@@ -15,8 +15,8 @@ class MessagesController < ApplicationController
 
   def destroy
     @message.destroy
-    flash.now [:danger] = "投稿を削除しました"
-    redirect_back(fallback_location: root_path)
+    flash.now[:danger] ="投稿を削除しました"
+    redirect_to @lecture
   end
   
   private
