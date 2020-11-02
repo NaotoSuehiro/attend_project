@@ -59,3 +59,4 @@ group :development, :test do
   gem 'pry-doc'
 end
 
+gem 'carrierwave'

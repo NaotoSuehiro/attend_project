@@ -23,8 +23,9 @@
         <%= f.label :comment, '備考' %>
         <%= f.text_field :comment, class: 'form-control' %>
       </div>
-      　
-      <%= f.submit '作成', class: 'btn btn-primary btn-block' %>
+      
+     
+      　<%= f.submit '作成', class: 'btn btn-primary btn-block' %>
        
       <%= form_with(model: @lecture, local: true) do |f| %>
         <%= render 'layouts/error_messages', model: f.object %>
