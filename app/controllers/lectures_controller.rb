@@ -45,7 +45,6 @@ class LecturesController < ApplicationController
 
   def destroy
       @lectute=Lecture.find(params[:id])
-       binding.pry
       @lecture.destroy
       flash[:succece]="クラスが削除されました"
       redirect_to lectures_url
@@ -53,7 +52,7 @@ class LecturesController < ApplicationController
   
   private
     def lecture_params
-      params.require(:lecture).permit(:name, :title, :schedule, :comment)
+      params.require(:lecture).permit(:name,:room,:comment)
         
     end
 

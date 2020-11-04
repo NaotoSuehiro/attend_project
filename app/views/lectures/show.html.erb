@@ -4,21 +4,20 @@
       <th class="text-center">詳細</th>
     </tr>
      <tr>
-      <td>講義名</td>
+      <td>コミュニティー名</td>
       <td class="text-center"> <%= @lecture.name %></td>
     </tr>
-    <tr>
-      <td>タイトル</td>
-      <td class="text-center"><%= @lecture.title %></td>
-    </tr>
-    <tr>
-      <td>時間割</td>
-      <td class="text-center"><%= @lecture.schedule %>限目</td>
-    </tr>
-    <tr>
-       <td>備考</td>
+    
+     <tr>
+       <td>コメント</td>
        <td class="text-center"><%= @lecture.comment %></td>
     </tr>
+    
+    <tr>
+      <td>room</td>
+      <td class="text-center"><%= @lecture.room %></td>
+    </tr>
+
 </table>
         
 <div class = "container">
@@ -33,5 +32,5 @@
 </br>
 <h2><u>メッセージ一覧</u></h2>
 
-<%= render partical:"messages" %>
+
 
