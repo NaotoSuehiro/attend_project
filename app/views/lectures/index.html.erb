@@ -1,22 +1,11 @@
 <h2><u>コミュニティ一覧</u></h2>
 </br>
-   <div class="container">
-     <div class="row">
-       <div class="col-md-12">
-         <div class="card border-secondary mb-3">
-           <div class="card-header text-center">新着情報</div>
-           <div class="card-body">#</div>
-         </div>
-        </div>
-        
-      </div>
-    </div>
 
- <div><%= link_to '新規作成', new_lecture_path, class: 'btn btn-primary' %></div>
+<div><%= link_to '新規作成', new_lecture_path, class: 'btn btn-primary' %></div>
  
-　<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered">
     　　<tr>
-　　　   <th class="text-center thead-info">講義</th>
+　　　   <th class="text-center thead-info">コミュニティ</th>
         </tr>
         
         <tr>
@@ -24,4 +13,24 @@
         <td><%= link_to lecture.id, lecture %>      <%= lecture.name %></td>
         </tr>
         <% end %>
-  </table> 
+ </table> 
+
+<div>下はテストです</div>
+<% @lectures.each do |lecture| %>
+<div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <div class="card border-dark mb-3">
+           <div class="card-body">
+             <div class="media">
+              <img class="align-self-start　img-fluid mr-3" alt="#" src="">
+              <div class="media-body">
+             <%= link_to lecture.id, lecture %>      <%= lecture.name %></br><%= lecture.comment %>
+              </div>
+             </div>
+           </div>
+          </div>
+        </div>
+      </div>
+</div>
+<% end %>
