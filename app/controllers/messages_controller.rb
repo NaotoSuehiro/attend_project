@@ -3,32 +3,34 @@ class MessagesController < ApplicationController
   before_action :correct_user, only: [:destroy]
   
   def create
-    @message = curent_user.messages.build(meesage_params)
+    @message = current_user.messages.build(message_params)
     if @message.save
-      flash[:succece] = "投稿しました"
+      flash[:info] = "投稿しました"
       redirect_to @lecture
     else
       flash[:danger] = "投稿できませんでした"
-    　render 'lecture/index'
+      #不明
+    　render template: 'lecture/index'
     end
   end
 
   def destroy
     @message.destroy
-    flash.now[:danger] ="投稿を削除しました"
+    flash.now[:danger] = 'メッセージが削除されました'
     redirect_to @lecture
   end
   
   private
   
-    def meesage_params
-    params.require(:message).permit(:content)
+    def message_params
+      params.require(:message).permit(:content)
     end
-  
+    
     def correct_user
-    @message = current_user.messages.find_by(id: params[:id])
-    unless @message
-      redirect_to root_url
+    　@message = current_user.messages.find_by(id: params[:id])
+    　unless @message
+      　redirect_to root_url
+    　end
     end
-    end
+    
 end

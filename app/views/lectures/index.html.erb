@@ -36,7 +36,7 @@
              <div class="media">
               <div><%= link_to lecture.id,lecture %><%= image_tag lecture.room.url %></div>
               <div class="media-body">
-             <%= link_to lecture.name, lecture %></br><%= lecture.comment %>
+             <%= link_to lecture.name, lecture %></br><%= lecture.comment.truncate(20) %>
               </div>
              </div>
            </div>
@@ -45,3 +45,4 @@
       </div>
 </div>
 <% end %>
+<%= paginate @lectures %>

@@ -26,6 +26,31 @@
 </br>
 </br>
 <h2><u>メッセージ一覧</u></h2>
+</br>
 
+<ul class="list-unstyled">
+ <% @message_index.each do|message| %>
+ <li class="media mb-3">
+      <img class="mr-2 rounded" src="<%= gravatar_url(message.user, { size: 50 }) %>" alt="">
+      <div class="media-body">
+        <%= link_to message.current_user.name, user_path(message.user) %> <span class="text-muted">posted at <%= message.created_at %></span>
+        <p><%= current_user.message.content %></p>
+      </div>
+  </li>
+ <% end %>
+ <%= paginate @message_index %>
+</ul>
 
+</br>
+<h4>投稿画面</h4>
 
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-sm-12">
+      <%= form_with(model: @message, local: true) do |f| %>
+    <div class="form-group">
+      <%= f.text_area :content, class: 'form-control', rows: 5 %>
+    </div>
+      <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+      <% end %>
+<% end %>
