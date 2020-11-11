@@ -1,3 +1,9 @@
 <h2><u>生徒一覧</u></h2>
 </br>
+<%= form_tag(search_users_path, method: :get) do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag '検索', name: nil ,class: 'btn btn-primary'%>
+<% end %>
+</br>
+
 <%= render 'users', users: @users %>

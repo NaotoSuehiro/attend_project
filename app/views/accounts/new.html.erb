@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    <div class="text-center"><h3><strong>プロフィール編集</strong></h3></div>
+
+    <%= form_with(model: @account, local: true) do |f| %>
+    
+       <div class="form-group">
+        <%= f.label :image, '画像' %></br>
+        <%= f.file_field :imege %>
+      </div>
+      
+      　<div class="form-group">
+        <%= f.label :sns, "SNSのURL（任意）" %>
+        <%= f.text_field :sns, class: 'form-control' %>
+      </div>
+     
+      <div class="form-group">
+        <%= f.label :introduciton, '紹介文' %>
+        <%= f.text_field :introduciton, class: 'form-control' %>
+      </div>
+      
+      <%= f.submit '更新する', class: 'btn btn-primary btn-block' %>
+       
+      <%= form_with(model: @account, local: true) do |f| %>
+    　　<%= render 'layouts/error_messages', model: f.object %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

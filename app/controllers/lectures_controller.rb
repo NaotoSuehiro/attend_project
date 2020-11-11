@@ -1,4 +1,8 @@
 class LecturesController < ApplicationController
+  #共通化
+  #before_action:find_lecture, only: [:show, :edit, :update, :destroy]
+  
+  
   
   def index
     @lectures = Lecture.all.page(params[:page])
@@ -6,11 +10,12 @@ class LecturesController < ApplicationController
 
   def show
     @lecture = Lecture.find(params[:id])
-     #messageの表記
     if logged_in?
       @message = current_user.messages.build
-      #@lecture = Lecture.find_by(id:params)
-      @message_index = Message.where(user_id:current_user.id, lecture_id:@lecture_id).order(id: :asc).page(params[:page]).per(50)
+      @lecture_set= Lecture.find_by(id:params)
+      @message_index =Message.where(user_id:current_user.id, lecture_id:@lecture_id).order(id: :asc).page(params[:page]).per(50)
+      p "aaa"
+      p @message_index
     end
   end
 
@@ -45,15 +50,20 @@ class LecturesController < ApplicationController
   end
 
   def destroy
-    @lecture=Lecture.find(params[:id])
+    @lecture=Lecture.find(params[:id]) 
     @lecture.destroy
     flash[:danger]="クラスが削除されました"
     redirect_to lectures_url
   end
   
   private
-    def lecture_params
-      params.require(:lecture).permit(:name,:room,:comment)
-    end
+  
+  def lecture_params
+    params.require(:lecture).permit(:name,:room,:comment)
+  end
+    
+  def find_lecture
+    @lecture = Lecture.find(params[:id])
+  end
     
 end

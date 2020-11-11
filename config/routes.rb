@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   get 'login', to: 'sessions#new'
   
-  resources :users, only: [:index, :show, :new, :create]
+  resources :users, only: [:index, :show, :new, :create] 
+  resources :users do
+  get :search, on: :collection
+  end
+  
   resources :lectures
   resources :sessions, only: [:new, :create, :destroy]
   resources :messages, only: [:create, :destroy]
-
+  resources :accounts, only: [:new, :create]
 end

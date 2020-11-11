@@ -33,12 +33,12 @@
  <li class="media mb-3">
       <img class="mr-2 rounded" src="<%= gravatar_url(message.user, { size: 50 }) %>" alt="">
       <div class="media-body">
-        <%= link_to message.user.name, user_path(message.user) %> <span class="text-muted">posted at <%= message.created_at %></span>
-        <p><%= message.content %></p>
+        <%= link_to message.current_user.name, user_path(message.user) %> <span class="text-muted">posted at <%= message.created_at %></span>
+        <p><%= current_user.message.content %></p>
       </div>
   </li>
  <% end %>
-
+ <%= paginate @message_index %>
 </ul>
 
 </br>

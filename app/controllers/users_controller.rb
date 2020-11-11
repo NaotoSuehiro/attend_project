@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
      @user = User.find(params[:id])
+     #@user = User.find_by(id:params)
   end
 
   def new
@@ -23,6 +24,15 @@ class UsersController < ApplicationController
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
+    end
+  end
+  
+  def search
+    if params[:name].present?
+      @users = User.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @user =User.none
+      puts "検索した結果見つかりませんでした"
     end
   end
 
