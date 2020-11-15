@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_062911) do
+ActiveRecord::Schema.define(version: 2020_11_15_135523) do
 
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image"
@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(version: 2020_11_11_062911) do
     t.string "sns"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "bookmarks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "lecture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lecture_id"], name: "index_bookmarks_on_lecture_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "lectures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -47,6 +56,8 @@ ActiveRecord::Schema.define(version: 2020_11_11_062911) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "bookmarks", "lectures"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "messages", "lectures"
   add_foreign_key "messages", "users"
 end

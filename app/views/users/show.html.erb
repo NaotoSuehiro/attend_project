@@ -24,12 +24,22 @@
 </br>
 
 <table class="table table-hover table-striped">
-  <tr> <th class="text-center" "table-info">bookmark</th>
+  <tr> <th class="text-center table-info">bookmark</th>
   </tr>
-  
+  <% if @bookmarks.present? %>
   <tr>
-    <td>bookmarkの一覧表を作成</td>
+    <% @bookmarks.each do |bookmark| %>
+      <% lecture = Lecture.find_by(id:bookmark.lecture_id) %>
+      <% if lecture.present? %>
+        <td><a href="/lectures/#{lecture.id}"><%= lecture.name %></a></td>
+      <% end %>
+    <% end %>
   </tr>
+  <% else %>
+  <tr>
+    <td>まだブックマークはありません。</td>
+  </tr>
+  <% end %>
 </table>
 
   

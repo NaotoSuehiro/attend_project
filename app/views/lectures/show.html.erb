@@ -17,7 +17,12 @@
         
 <div class = "container">
   <div class = "row">
-    <div class = "offset-md-7 col-2 btn btn-light mr-4"><%=link_to "一覧表へ戻る", lectures_url %></div>
+    <% if current_user && Bookmark.find_by(user_id:current_user.id,lecture_id:@lecture.id).blank? %>
+    <div class = "offset-md-5 col-2 btn btn-light mr-4"><%=link_to "ブックマークする", lecture_bookmarks_path(@lecture), method: :post %></div>
+    <% elsif current_user && Bookmark.find_by(user_id:current_user.id,lecture_id:@lecture.id).present? %>
+    <div class = "offset-md-5 col-2 btn btn-light mr-4"><%=link_to "ブックマークを解除する", lecture_bookmark_path(@lecture), method: :delete %></div>
+    <% end %>
+    <div class = "col-2 btn btn-light mr-4"><%=link_to "一覧表へ戻る", lectures_url %></div>
     <div class = "col-1 btn btn-light mr-4"><%=link_to "編集", edit_lecture_path(@lecture) %></div>
     <div class ="col-1 btn btn-light"><%=link_to "削除", @lecture, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }%></div>
   </div>
