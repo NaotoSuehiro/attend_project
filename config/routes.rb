@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get :search, on: :collection
   end
   
-  resources :lectures
+  resources :lectures do
+    resources :bookmarks, only: [:create, :destroy]
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :messages, only: [:create, :destroy]
   resources :accounts, only: [:new, :create]
