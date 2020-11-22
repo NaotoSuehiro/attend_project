@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
     else
       flash[:danger] = "投稿できませんでした"
       #不明
-    　render template: 'lectures/index'
+    　redirect_to @lecture
     end
   end
 

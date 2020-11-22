@@ -4,10 +4,10 @@ class BookmarksController < ApplicationController
         @bookmark = Bookmark.new(user_id: current_user.id, lecture_id: params[:lecture_id])
 
         if @bookmark.save
-            flash[:notice] = "ブックマークしました。"
+            flash[:info] = 'ブックマークに登録しました'
             redirect_to lecture_path(params[:lecture_id])
         else
-            flash[:alert] = "ブックマークできませんでした。"
+            flash[:alert] = 'ブックマークに登録できませんでした'
             redirect_to lecture_path(params[:lecture_id])
         end
     end
@@ -16,11 +16,12 @@ class BookmarksController < ApplicationController
         @bookmark = Bookmark.find_by(user_id: current_user.id, lecture_id: params[:lecture_id])
         
         if @bookmark.destroy
-            flash[:notice] = "ブックマークを解除しました。"
+            flash[:notice] = 'ブックマークを解除しました'
             redirect_to lecture_path(params[:lecture_id])
         else
-            flash[:alert] = "ブックマークを解除できませんでした。"
+            flash[:alert] = 'ブックマークが解除できませんでした'
             redirect_to lecture_path(params[:lecture_id])
         end
     end
 end
+

@@ -1,0 +1,26 @@
+<h2><u>検索一覧</u></h2>
+</br>
+<%= form_tag(search_users_path, method: :get) do %>
+  <%= text_field_tag :name %>
+  <%= submit_tag '検索', name: nil ,class: 'btn btn-primary'%>
+<% end %>
+</br>
+
+<div>検索したユーザー一覧</div>
+<% if  @users.present? %>
+  <ul class="list-unstyled">
+    <% @users.each do |user| %>
+      <li class="media">
+        <img class="mr-2 rounded" src="<%= gravatar_url(user, { size: 50 }) %>" alt="">
+        <div class="media-body">
+          <div><%= link_to user.name, user_path(user) %></div>
+          <div><p>自己紹介の分(20)</p></div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+　</br>
+  <h5>ユーザーはいませんでした</h5>
+<% end %>
+  <%= paginate @users %>

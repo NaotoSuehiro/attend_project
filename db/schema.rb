@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_11_15_135523) do
 
-  create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "accounts", force: :cascade do |t|
     t.string "image"
     t.string "introduction"
     t.string "sns"
@@ -20,16 +20,16 @@ ActiveRecord::Schema.define(version: 2020_11_15_135523) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "bookmarks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "lecture_id"
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "lecture_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lecture_id"], name: "index_bookmarks_on_lecture_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
-  create_table "lectures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "lectures", force: :cascade do |t|
     t.string "name"
     t.string "room"
     t.string "comment"
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 2020_11_15_135523) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "messages", force: :cascade do |t|
     t.string "content"
-    t.bigint "user_id"
-    t.bigint "lecture_id"
+    t.integer "user_id"
+    t.integer "lecture_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lecture_id"], name: "index_messages_on_lecture_id"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_11_15_135523) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
@@ -56,8 +56,4 @@ ActiveRecord::Schema.define(version: 2020_11_15_135523) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "bookmarks", "lectures"
-  add_foreign_key "bookmarks", "users"
-  add_foreign_key "messages", "lectures"
-  add_foreign_key "messages", "users"
 end

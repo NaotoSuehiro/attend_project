@@ -1,35 +1,51 @@
 class AccountsController < ApplicationController
-  
+  #before_action:find_account, only: [:edit, :update]
   def new
-    #"もしAccountテーブルにインスタンスがない（nul）ならインスタンスを作成。インスタンスがあるならそれを見つける条件式を書く"
     @account = Account.new
-    unless
-    @account = Account.find(params[:id])
-    end
   end
 
   def create
-    @account = Account.find(params[:id])
+     @account = Account.new(account_params)
     
     if @account.update(account_params)
       flash[:info] = "プロフィールを更新しました"
-      redirect_to @user
+      #users showに飛ばしたい
+      redirect_to root_path
     else
       flash.now[:danger] ="プロフィールを更新できませんでした"
-      render "user/show"
+      render :new
     end 
+  end  
+
+  
+  def edit
+    @account = Account.find(params[:id])
   end
   
-end
+  def update
+    @account = Account.find(params[:id])
+    
+    if @account.update(account_params)
+      flash[:info] = 'プロフィールは更新されました'
+      #users showに飛ばしたい
+      redirect_to root_path
+    else
+      flash.now[:danger] = 'プロフィールはは更新されませんでした'
+      render :edit
+    end
+  end
+  
 
-private
+ private
  
  def account_params
-   params.require(:account).permit(:image, :introduciton, :sns)
+   params.require(:account).permit(:image, :introduction, :sns)
  end
 
 #後からパーシャル化する
- def set_account
-  @account = Account.find(params[:id])
+ def find_account
+   @account = Account.find(params[:id])
  end
+ 
+end
   

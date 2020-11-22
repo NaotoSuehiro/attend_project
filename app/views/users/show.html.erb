@@ -5,6 +5,7 @@
          <div class="card border-secondary mb-3">
            <div class="card-header text-center border-secondary" ><%= current_user.name %></div>
            <div class="card-body"> <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 300 }) %>" alt="">
+           </br><%= image_tag @account.image.url %>
            </div>
          </div>
         </div>
@@ -15,7 +16,8 @@
                 <div class ="text-center">profile </div>
                 <aside class ="text-light"> <%= link_to '編集', new_account_path %></aside>
               </div>
-              <div class="card-body">テキスト機能を作る</div>
+              <div class="card-body"><%= @account.introduction %></div>
+              <p>SNSアカウント<%= @account.sns %></p>
             </div>
           </div>
       </div>
