@@ -5,15 +5,15 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   get 'login', to: 'sessions#new'
   
-  resources :users, only: [:index, :show, :new, :create] 
   resources :users do
-  get :search, on: :collection
+   get :search, on: :collection
   end
+  resources :users, only: [:index, :show, :new, :create] 
   
   resources :lectures do
     resources :bookmarks, only: [:create, :destroy]
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :messages, only: [:create, :destroy]
-  resources :accounts, only: [:new, :create]
+  resources :accounts, only: [:new, :create, :edit, :update]
 end
