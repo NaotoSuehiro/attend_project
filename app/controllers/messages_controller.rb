@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
   before_action :correct_user, only: [:destroy]
   
   def create
+    @lecture = Lecture.find(params[:id])
     @message = current_user.messages.build(message_params)
     if @message.save
       flash[:info] = "投稿しました"

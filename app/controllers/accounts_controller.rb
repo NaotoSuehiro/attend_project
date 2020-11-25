@@ -5,9 +5,10 @@ class AccountsController < ApplicationController
   end
 
   def create
-     @account = Account.new(account_params)
-    
-    if @account.update(account_params)
+    params[:account][:user_id] = current_user.id
+    @account = Account.new(account_params)
+    #binding.pry
+    if @account.save
       flash[:info] = "プロフィールを更新しました"
       #users showに飛ばしたい
       redirect_to root_path
@@ -19,11 +20,13 @@ class AccountsController < ApplicationController
 
   
   def edit
-    @account = Account.find(params[:id])
+    @user =User.find(params[:id])
+    @account = Account.find_by(user_id:@user.id)
   end
   
   def update
-    @account = Account.find(params[:id])
+    @user =User.find(params[:id])
+    @account = Account.find_by(user_id:@user.id)
     
     if @account.update(account_params)
       flash[:info] = 'プロフィールは更新されました'
@@ -39,7 +42,7 @@ class AccountsController < ApplicationController
  private
  
  def account_params
-   params.require(:account).permit(:image, :introduction, :sns)
+   params.require(:account).permit(:image, :introduction, :sns, :user_id)
  end
 
 #後からパーシャル化する

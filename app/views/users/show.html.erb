@@ -1,32 +1,42 @@
 <h1>プロフィール</h1>
-   <div class="container">
-     <div class="row">
-       <div class="col-md-4">
-         <div class="card border-secondary mb-3">
-           <div class="card-header text-center border-secondary" ><%= current_user.name %></div>
-           <div class="card-body"> <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 300 }) %>" alt="">
-           </br><%= image_tag @account.image.url %>
-           </div>
-         </div>
-        </div>
-        
-          <div class="col-md-7">
-            <div class="card border-secondary mb-3">
-              <div class="card-header border-secondary">
-                <div class ="text-center">profile </div>
-                <aside class ="text-light"> <%= link_to '編集', new_account_path %></aside>
-              </div>
-              <div class="card-body"><%= @account.introduction %></div>
-              <p>SNSアカウント<%= @account.sns %></p>
-            </div>
-          </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card border-secondary mb-3">
+        <div class="card-header text-center border-secondary" ><%= current_user.name %></div>
+        <div class="card-body"> <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 300 }) %>" alt=""></div>
       </div>
     </div>
+        
+    <div class="col-md-7">
+      <div class="card border-secondary mb-3">
+        <div class="card-header border-secondary">
+          <div class ="text-center">profile </div>
+            <div class ="text-light"> 
+              <% if @account.present? %>
+                <div class ="text-light"> <%= link_to '編集', edit_account_path %></div>
+              <% else %>
+                <div class ="text-light"> <%= link_to '作成', new_account_path %></div>
+              <% end %>
+            </div>
+        </div>
+        <div class="card-body">
+          <% if @account.present? %>
+            <p><%= @account.introduction %></p>
+            <p><h4><span class= "badge badge-primary">SNSのURL</span></h4><%= @account.sns %></p>
+          <% else %>
+            <p>自己紹介の文を記入しよう！</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
 
 </br>
-
-<table class="table table-hover table-striped">
-  <tr> <th class="text-center table-info">bookmark</th>
+<table class="table table-hover">
+  <tr> <th class="text-center table-primary">bookmark</th>
   </tr>
   <% if @bookmarks.present? %>
   <tr>
@@ -35,8 +45,8 @@
       <% if lecture.present? %>
         <td><a href="/lectures/#{lecture.id}"><%= lecture.name %></a></td>
       <% end %>
-    <% end %>
   </tr>
+    <% end %>
   <% else %>
   <tr>
     <td>まだブックマークはありません。</td>
@@ -44,6 +54,3 @@
   <% end %>
 </table>
 
-  
-  
- 

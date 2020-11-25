@@ -8,4 +8,11 @@ class ApplicationController < ActionController::Base
       redirect_to  new_session_path
     end
   end
+  
+  def counts(user)
+    @count_microposts = user.microposts.count
+    @count_followings = user.followings.count
+    @count_followers = user.followers.count
+  end
+  
 end
