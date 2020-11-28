@@ -12,11 +12,11 @@
       <div class="card border-secondary mb-3">
         <div class="card-header border-secondary">
           <div class ="text-center">profile </div>
-            <div class ="text-light"> 
+            <div> 
               <% if @account.present? %>
-                <div class ="text-light"> <%= link_to '編集', edit_account_path %></div>
+                <div class ="text-right"> <%= link_to '編集', edit_account_path %></div>
               <% else %>
-                <div class ="text-light"> <%= link_to '作成', new_account_path %></div>
+                <div class ="text-right"> <%= link_to '作成', new_account_path %></div>
               <% end %>
             </div>
         </div>

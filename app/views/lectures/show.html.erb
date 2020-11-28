@@ -39,7 +39,14 @@
       <img class="mr-2 rounded" src="<%= gravatar_url(message.user, { size: 50 }) %>" alt="">
       <div class="media-body">
         <%= link_to message.user.name, user_path(message.user) %> <span class="text-muted">posted at <%= message.created_at %></span>
-        <p><%= message.content %></p>
+        <div>
+          <p><%= message.content %></p>
+          <div class= "text-right">
+            <% if current_user == message.user %>
+            <%= link_to "削除", message, method: :delete, data: { confirm: "メッセージを削除されますか?" }, class: 'btn btn-danger btn-sm' %>
+            <% end %>
+          </div>
+        </div>
       </div>
   </li>
  <% end %>
@@ -56,6 +63,8 @@
     <div class="form-group">
       <%= f.text_area :content, class: 'form-control', rows: 5 %>
     </div>
+    　<%= f.hidden_field :user_id, value: current_user.id %>
+    　<%= f.hidden_field :lecture_id, value: params[:id] %>
       <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
       <% end %>
 <% end %>

@@ -1,30 +1,32 @@
 class MessagesController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
+  #before_action :correct_user, only: [:destroy]
   
   def create
-    @lecture = Lecture.find(params[:id])
+    #@user_set=params[:message][:user_id]
+    #@lecture=params[:message][:lecture_id]
     @message = current_user.messages.build(message_params)
     if @message.save
       flash[:info] = "投稿しました"
-      redirect_to @lecture
+       redirect_to controller: :lectures, action: :show, id: lecture.id
     else
-      flash[:danger] = "投稿できませんでした"
-      #不明
-    　redirect_to @lecture
+      flash.now[:danger] = "投稿できませんでした"
+      render template: "toppages/index"
+      #"lectures/show"
     end
   end
 
   def destroy
+    @message= Message.find(params[:id])
     @message.destroy
     flash.now[:danger] = 'メッセージが削除されました'
-    redirect_to @lecture
+    redirect_to controller: :lectures, action: :show, id: lecture.id
   end
   
   private
   
     def message_params
-      params.require(:message).permit(:content)
+      params.require(:message).permit(:content,:user_id,:lecture_id)
     end
     
     def correct_user

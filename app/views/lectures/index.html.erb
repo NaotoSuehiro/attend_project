@@ -26,7 +26,6 @@
  </table> 
 
 
-<div>下はテストです</div>
 <% @lectures.each do |lecture| %>
 <div class="container">
      <div class="row">
@@ -34,7 +33,7 @@
          <div class="card border-dark mb-3">
            <div class="card-body">
              <div class="media">
-              <div><%= link_to lecture.id,lecture %><%= image_tag lecture.room.url %></div>
+              <div class= "room_index"><%= link_to lecture.id,lecture %><%= image_tag lecture.room.url %></div>
               <div class="media-body">
              <%= link_to lecture.name, lecture %></br><%= lecture.comment.truncate(20) %>
               </div>

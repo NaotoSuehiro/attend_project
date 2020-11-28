@@ -7,7 +7,6 @@ class AccountsController < ApplicationController
   def create
     params[:account][:user_id] = current_user.id
     @account = Account.new(account_params)
-    
     if @account.save
       flash[:info] = "プロフィールを更新しました"
       redirect_to controller: :users, action: :show, id: current_user.id

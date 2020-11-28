@@ -10,10 +10,9 @@ class LecturesController < ApplicationController
 
   def show
     @lecture = Lecture.find(params[:id])
-
-    @lecture_set= Lecture.find_by(id:params)
-     @message_index =Message.where(user_id:current_user.id, lecture_id:1).order(id: :asc).page(params[:page]).per(50)
-    #@message_index =Message.where(user_id:current_user.id, lecture_id:@lecture_id).order(id: :asc).page(params[:page]).per(50)
+    #@lecture_set= Lecture.find_by(id:params)
+    @message_index =Message.where(user_id:current_user.id, lecture_id:@lecture.id).order(id: :asc).page(params[:page]).per(50)
+    
     if logged_in?
        @message = current_user.messages.build
     end
