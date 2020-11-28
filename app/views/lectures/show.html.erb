@@ -23,8 +23,8 @@
     <div class = "offset-md-5 col-2 btn btn-light mr-4"><%=link_to "ブックマークを解除", lecture_bookmark_path(@lecture), method: :delete %></div>
     <% end %>
     <div class = "col-2 btn btn-light mr-4"><%=link_to "一覧表へ戻る", lectures_url %></div>
-    <div class = "col-1 btn btn-light mr-4"><%=link_to "編集", edit_lecture_path(@lecture) %></div>
-    <div class ="col-1 btn btn-light"><%=link_to "削除", @lecture, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }%></div>
+      <div class = "col-1 btn btn-light mr-4"><%=link_to "編集", edit_lecture_path(@lecture) %></div>
+      <div class ="col-1 btn btn-light"><%=link_to "削除", @lecture, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }%></div>
   </div>
 </div>
 
@@ -43,7 +43,7 @@
           <p><%= message.content %></p>
           <div class= "text-right">
             <% if current_user == message.user %>
-            <%= link_to "削除", message, method: :delete, data: { confirm: "メッセージを削除されますか?" }, class: 'btn btn-danger btn-sm' %>
+            <%= link_to "削除", message, method: :delete, data: { confirm: "メッセージを削除されますか?" }, class: 'btn btn-info btn-sm' %>
             <% end %>
           </div>
         </div>
