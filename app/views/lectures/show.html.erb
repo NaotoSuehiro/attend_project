@@ -23,8 +23,8 @@
     <div class = "offset-md-5 col-2 btn btn-light mr-4"><%=link_to "ブックマークを解除", lecture_bookmark_path(@lecture), method: :delete %></div>
     <% end %>
     <div class = "col-2 btn btn-light mr-4"><%=link_to "一覧表へ戻る", lectures_url %></div>
-    <div class = "col-1 btn btn-light mr-4"><%=link_to "編集", edit_lecture_path(@lecture) %></div>
-    <div class ="col-1 btn btn-light"><%=link_to "削除", @lecture, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }%></div>
+      <div class = "col-1 btn btn-light mr-4"><%=link_to "編集", edit_lecture_path(@lecture) %></div>
+      <div class ="col-1 btn btn-light"><%=link_to "削除", @lecture, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }%></div>
   </div>
 </div>
 
@@ -39,7 +39,14 @@
       <img class="mr-2 rounded" src="<%= gravatar_url(message.user, { size: 50 }) %>" alt="">
       <div class="media-body">
         <%= link_to message.user.name, user_path(message.user) %> <span class="text-muted">posted at <%= message.created_at %></span>
-        <p><%= message.content %></p>
+        <div>
+          <p><%= message.content %></p>
+          <div class= "text-right">
+            <% if current_user == message.user %>
+            <%= link_to "削除", message, method: :delete, data: { confirm: "メッセージを削除されますか?" }, class: 'btn btn-info btn-sm' %>
+            <% end %>
+          </div>
+        </div>
       </div>
   </li>
  <% end %>
@@ -56,6 +63,8 @@
     <div class="form-group">
       <%= f.text_area :content, class: 'form-control', rows: 5 %>
     </div>
+    　<%= f.hidden_field :user_id, value: current_user.id %>
+    　<%= f.hidden_field :lecture_id, value: params[:id] %>
       <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
       <% end %>
 <% end %>

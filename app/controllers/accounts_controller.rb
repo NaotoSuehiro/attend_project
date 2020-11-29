@@ -1,16 +1,15 @@
 class AccountsController < ApplicationController
-  #before_action:find_account, only: [:edit, :update]
+  
   def new
     @account = Account.new
   end
 
   def create
-     @account = Account.new(account_params)
-    
-    if @account.update(account_params)
+    params[:account][:user_id] = current_user.id
+    @account = Account.new(account_params)
+    if @account.save
       flash[:info] = "プロフィールを更新しました"
-      #users showに飛ばしたい
-      redirect_to root_path
+      redirect_to controller: :users, action: :show, id: current_user.id
     else
       flash.now[:danger] ="プロフィールを更新できませんでした"
       render :new
@@ -19,16 +18,14 @@ class AccountsController < ApplicationController
 
   
   def edit
-    @account = Account.find(params[:id])
+    @account = Account.find_by(user_id:current_user.id)
   end
   
   def update
-    @account = Account.find(params[:id])
-    
+    @account = Account.find_by(user_id:current_user.id)
     if @account.update(account_params)
       flash[:info] = 'プロフィールは更新されました'
-      #users showに飛ばしたい
-      redirect_to root_path
+      redirect_to controller: :users, action: :show, id: current_user.id
     else
       flash.now[:danger] = 'プロフィールはは更新されませんでした'
       render :edit
@@ -39,13 +36,8 @@ class AccountsController < ApplicationController
  private
  
  def account_params
-   params.require(:account).permit(:image, :introduction, :sns)
+   params.require(:account).permit(:image, :introduction, :sns, :user_id)
  end
 
-#後からパーシャル化する
- def find_account
-   @account = Account.find(params[:id])
- end
- 
 end
   

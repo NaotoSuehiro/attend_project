@@ -5,22 +5,27 @@ class User < ApplicationRecord
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
   has_secure_password
-   
-  has_one :account
   has_many :messages
   has_many :lectures
-  #bookmark_relationship
-  #has_many :favorite, thought: :messages, source: :lecture
+  #フォロー機能リレーション
+  has_many :relationships
+  has_many :followings, through: :relationships, source: :follow
+  has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
+  has_many :followers, through: :reverses_of_relationship, source: :user
   
-
-  #bookmark_function
-  def like(lecture)
-    Messages.find_or_create_by(lecture_id:lecture.id)
+  #フォロー機能
+  def follow(other_user)
+    unless self == other_user
+      self.relationships.find_or_create_by(follow_id: other_user.id)
+    end
   end
 
-  #bookmark_remove_function
-  def unlike(lecture)
-    message = messages.find_by(lecture_id :lecture.id)
-    message.destroy if message
+  def unfollow(other_user)
+    relationship = self.relationships.find_by(follow_id: other_user.id)
+    relationship.destroy if relationship
+  end
+
+  def following?(other_user)
+    self.followings.include?(other_user)
   end
 end

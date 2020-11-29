@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   resources :users do
    get :search, on: :collection
   end
-  resources :users, only: [:index, :show, :new, :create] 
+  resources :users, only: [:index, :show, :new, :create] do
+    member do
+      get :followings
+      get :followers
+    end
+  end
   
   resources :lectures do
     resources :bookmarks, only: [:create, :destroy]

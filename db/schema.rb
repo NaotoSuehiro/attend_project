@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_15_135523) do
+ActiveRecord::Schema.define(version: 2020_11_24_145843) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "image"
     t.string "introduction"
     t.string "sns"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
   create_table "bookmarks", force: :cascade do |t|
@@ -44,8 +46,17 @@ ActiveRecord::Schema.define(version: 2020_11_15_135523) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lecture_id"], name: "index_messages_on_lecture_id"
-    t.index ["user_id", "lecture_id"], name: "index_messages_on_user_id_and_lecture_id", unique: true
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "follow_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follow_id"], name: "index_relationships_on_follow_id"
+    t.index ["user_id", "follow_id"], name: "index_relationships_on_user_id_and_follow_id", unique: true
+    t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
