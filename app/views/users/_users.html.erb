@@ -5,11 +5,10 @@
         <img class="mr-2 rounded" src="<%= gravatar_url(user, { size: 50 }) %>" alt="">
         <div class="media-body">
           <div>
-           <%= link_to user.name, user_path(user) %>
+           <%= user.name %>
           </div>
           <div>
-            <p>自己紹介の文</p>
-          </div>
+            <p><%= link_to "プロフィールを確認する", user_path(user) %></p>
         </div>
       </li>
     <% end %>

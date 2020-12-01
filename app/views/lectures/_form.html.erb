@@ -18,7 +18,7 @@
         <%= f.label :room, '画像' %></br>
         <%= f.file_field :room %>
       </div>
-      
+      <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.submit '作成', class: 'btn btn-primary btn-block' %>
        
       <%= form_with(model: lecture, local: true) do |f| %>

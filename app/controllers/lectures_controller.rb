@@ -57,7 +57,7 @@ class LecturesController < ApplicationController
   private
   
   def lecture_params
-    params.require(:lecture).permit(:name,:room,:comment)
+    params.require(:lecture).permit(:name,:room,:comment,:user_id)
   end
     
   def find_lecture
