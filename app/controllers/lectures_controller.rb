@@ -2,8 +2,6 @@ class LecturesController < ApplicationController
   #共通化
   #before_action:find_lecture, only: [:show, :edit, :update, :destroy]
   
-  
-  
   def index
     @lectures = Lecture.all.page(params[:page])
   end
