@@ -16,7 +16,7 @@ class BookmarksController < ApplicationController
         @bookmark = Bookmark.find_by(user_id: current_user.id, lecture_id: params[:lecture_id])
         
         if @bookmark.destroy
-            flash[:notice] = 'ブックマークを解除しました'
+            flash[:info] = 'ブックマークを解除しました'
             redirect_to lecture_path(params[:lecture_id])
         else
             flash[:alert] = 'ブックマークが解除できませんでした'
