@@ -9,7 +9,7 @@ class LecturesController < ApplicationController
   def show
     @lecture = Lecture.find(params[:id])
     @message_index =Message.where(lecture_id:@lecture.id).order(id: :asc).page(params[:page]).per(50)
-    
+    @bookmark = Bookmark.where(lecture_id: @lecture.id)
     if logged_in?
       @message = current_user.messages.build
     end

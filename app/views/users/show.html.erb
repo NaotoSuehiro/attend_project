@@ -14,7 +14,7 @@
       <div class="card border-secondary mb-3">
         
         <div class="card-header border-secondary">
-          <div class ="text-center">profile </div>
+          <div class ="text-center">プロフィール</div>
             <div> 
               <% if @account.present? %>
                 <div class ="text-right"> <%= link_to '編集', edit_account_path %></div>
@@ -28,14 +28,9 @@
           <% if @account.present? %>
             <p><%= @account.introduction %></p>
           <% else %>
-            <p>自己紹介の文を記入しよう！</p>
+            <p>自己紹介の文を記入しよう！またSNSのURLなど記載することで多くの人とつながることができます！</p>
           <% end %>
           
-          <% if @account.present? %>
-            <p><strong>SNS:</strong><%= @account.sns %></p>
-          <% else %>
-            <p></p>
-          <% end %>
         </div>
         
       </div>
