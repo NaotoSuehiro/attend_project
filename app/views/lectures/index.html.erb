@@ -11,7 +11,7 @@
          <div class="card border-dark mb-3">
            <div class="card-body">
              <div class="media">
-              <div class= "room_index"><%= image_tag lecture.room.url %></div>
+              <div class= "room_index"><%= image_tag lecture.room.url,:size => '150x150' %></div>
               <div class="media-body">
              <%= link_to lecture.name, lecture %></br><%= lecture.comment.truncate(80) %>
               </div>
