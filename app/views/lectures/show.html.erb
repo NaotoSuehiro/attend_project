@@ -45,19 +45,24 @@
 
 <ul class="list-unstyled">
  <% @message_index.each do|message| %>
+ <% @account = Account.find_by(user_id:message.user.id) %>
  <li class="media mb-3">
-      <img class="mr-2 rounded" src="<%= gravatar_url(message.user, { size: 50 }) %>" alt="">
-      <div class="media-body">
-        <%= link_to message.user.name, user_path(message.user) %> <span class="text-muted">posted at <%= message.created_at %></span>
-        <div>
-          <p><%= message.content %></p>
-          <div class= "text-right">
+    <% if @account.present? %>
+      <div class="text-center"> <%= image_tag @account.image.url,:size => '50x50' %></div>
+    <% else %>
+      <div class="text-center"><%= image_tag 'noprofile.jpg',:size =>'50x50' %></div>
+    <% end %>
+    <div class="media-body">
+      <%= link_to message.user.name, user_path(message.user) %> <span class="text-muted">posted at <%= message.created_at %></span>
+      <div>
+        <p><%= message.content %></p>
+        <div class= "text-right">
           <% if current_user == message.user %>
             <%= link_to "削除", message, method: :delete, data: { confirm: "メッセージを削除されますか?" }, class: 'btn btn-info btn-sm' %>
           <% end %>
-          </div>
         </div>
       </div>
+    </div>
   </li>
  <% end %>
 

@@ -2,7 +2,12 @@
 </br>
 
 <div>
-  <div class="text-center"> <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 300 }) %>" alt=""></div>
+  <% if @account.present? %>
+    <div class="text-center"><%= image_tag @account.image.url,:size => '300x300' %>"</div>
+  <% else %>
+    <div class="text-center"><%= image_tag 'noprofile.jpg',:size =>'300x300' %></div>
+  <% end %>
+  
   </br>
   <h2 class="text-center"><%= @user.name %></h2>
 </div>
@@ -16,11 +21,13 @@
         <div class="card-header border-secondary">
           <div class ="text-center">プロフィール</div>
             <div> 
+            <% if current_user.id == @user.id %>
               <% if @account.present? %>
                 <div class ="text-right"> <%= link_to '編集', edit_account_path %></div>
               <% else %>
                 <div class ="text-right"> <%= link_to '作成', new_account_path %></div>
               <% end %>
+            <% end %>
             </div>
         </div>
         
