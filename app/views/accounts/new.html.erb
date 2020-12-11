@@ -5,8 +5,13 @@
     <%= form_with(model: @account, local: true) do |f| %>
      
       <div class="form-group">
+        <%= f.label :image, '画像' %></br>
+        <%= f.file_field :imege %>
+      </div>
+     
+      <div class="form-group">
         <%= f.label :introduction, '紹介文' %>
-        <%= f.text_field :introduction, class: 'form-control' %>
+        <%= f.text_area :introduction, class: 'form-control',rows:8 %>
       </div>
       
       <%= f.submit '更新する', class: 'btn btn-primary btn-block' %>

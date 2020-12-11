@@ -6,4 +6,26 @@
 <% end %>
 </br>
 
-<%= render 'users', users: @users %>
+<% if @users.any? %>
+  <ul class="list-unstyled">
+    <% @users.each do |user| %>
+    <% @account = Account.find_by(user_id:user.id) %>
+      <li class="media">
+        <img class="mr-2 rounded" src="<%= gravatar_url(user, { size: 50 }) %>" alt="">
+        <div class="media-body">
+          <div>
+           <%= link_to user.name, user_path(user) %>
+          </div>
+          <div>
+            <% if @account.present? %>
+              <p><%= @account.introduction %></p>
+            <% else %>
+              <p>よろしくお願いします</p>
+            <% end %>
+          </div>
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate @users %>
+<% end %>
+
